@@ -1,0 +1,25 @@
+version: '3.0'
+description: Kusama Hydra manifest
+repository: https://github.com/
+## reserved but unused fields
+hydraVersion: "3"
+dataSource:
+  kind: substrate
+  chain: kusama
+####
+entities:
+  - mappings/lib/generated/**/*.model.js
+mappings:
+  mappingsModule: mappings/lib/mappings
+  imports:
+    - mappings/lib/mappings/generated/types
+  range: '[0, )' # process all blocks from genesis
+  eventHandlers:
+    - event: treasury.Awarded
+      handler: treasuryAwarded
+    - event: treasury.Proposed
+      handler: treasuryProposed
+    - event: treasury.Rejected
+      handler: treasuryRejected
+
+

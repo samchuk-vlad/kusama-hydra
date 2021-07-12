@@ -1,0 +1,15 @@
+typegen:
+  metadata:
+    source: wss://kusama-rpc.polkadot.io
+    blockHash: '${HASH}'
+  events:
+    - treasury.Proposed
+    - treasury.Awarded
+    - treasury.Rejected
+  calls:
+    - treasury.ProposeSpend
+    - treasury.ApproveProposal
+    - treasury.RejectProposal
+  customTypes:
+    typedefsLoc: typedefs.json # it's empty for Kusama, type overrides can be places there
+  outDir: ./mappings/generated/types

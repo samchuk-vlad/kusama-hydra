@@ -1,0 +1,358 @@
+interface BaseGraphQLObject {
+  id: ID!
+  createdAt: DateTime!
+  createdById: String!
+  updatedAt: DateTime
+  updatedById: String
+  deletedAt: DateTime
+  deletedById: String
+  version: Int!
+}
+
+type BaseModel implements BaseGraphQLObject {
+  id: ID!
+  createdAt: DateTime!
+  createdById: String!
+  updatedAt: DateTime
+  updatedById: String
+  deletedAt: DateTime
+  deletedById: String
+  version: Int!
+}
+
+type BaseModelUUID implements BaseGraphQLObject {
+  id: ID!
+  createdAt: DateTime!
+  createdById: String!
+  updatedAt: DateTime
+  updatedById: String
+  deletedAt: DateTime
+  deletedById: String
+  version: Int!
+}
+
+input BaseWhereInput {
+  id_eq: String
+  id_in: [String!]
+  createdAt_eq: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdById_eq: String
+  updatedAt_eq: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedById_eq: String
+  deletedAt_all: Boolean
+  deletedAt_eq: String
+  deletedAt_lt: String
+  deletedAt_lte: String
+  deletedAt_gt: String
+  deletedAt_gte: String
+  deletedById_eq: String
+}
+
+"""GraphQL representation of BigInt"""
+scalar BigInt
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+interface DeleteResponse {
+  id: ID!
+}
+
+type KusamaProposals implements BaseGraphQLObject {
+  id: ID!
+  createdAt: DateTime!
+  createdById: String!
+  updatedAt: DateTime
+  updatedById: String
+  deletedAt: DateTime
+  deletedById: String
+  version: Int!
+  proposalIndex: Int
+  proposer: String
+  beneficiary: String
+  requestedAmount: String
+  boundedAmount: String
+  status: Status
+}
+
+type KusamaProposalsConnection {
+  totalCount: Int!
+  edges: [KusamaProposalsEdge!]!
+  pageInfo: PageInfo!
+}
+
+input KusamaProposalsCreateInput {
+  proposalIndex: Float
+  proposer: String
+  beneficiary: String
+  requestedAmount: String
+  boundedAmount: String
+  status: Status
+}
+
+type KusamaProposalsEdge {
+  node: KusamaProposals!
+  cursor: String!
+}
+
+enum KusamaProposalsOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+  proposalIndex_ASC
+  proposalIndex_DESC
+  proposer_ASC
+  proposer_DESC
+  beneficiary_ASC
+  beneficiary_DESC
+  requestedAmount_ASC
+  requestedAmount_DESC
+  boundedAmount_ASC
+  boundedAmount_DESC
+  status_ASC
+  status_DESC
+}
+
+input KusamaProposalsUpdateInput {
+  proposalIndex: Float
+  proposer: String
+  beneficiary: String
+  requestedAmount: String
+  boundedAmount: String
+  status: Status
+}
+
+input KusamaProposalsWhereInput {
+  id_eq: ID
+  id_in: [ID!]
+  createdAt_eq: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdById_eq: ID
+  createdById_in: [ID!]
+  updatedAt_eq: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedById_eq: ID
+  updatedById_in: [ID!]
+  deletedAt_all: Boolean
+  deletedAt_eq: DateTime
+  deletedAt_lt: DateTime
+  deletedAt_lte: DateTime
+  deletedAt_gt: DateTime
+  deletedAt_gte: DateTime
+  deletedById_eq: ID
+  deletedById_in: [ID!]
+  proposalIndex_eq: Int
+  proposalIndex_gt: Int
+  proposalIndex_gte: Int
+  proposalIndex_lt: Int
+  proposalIndex_lte: Int
+  proposalIndex_in: [Int!]
+  proposer_eq: String
+  proposer_contains: String
+  proposer_startsWith: String
+  proposer_endsWith: String
+  proposer_in: [String!]
+  beneficiary_eq: String
+  beneficiary_contains: String
+  beneficiary_startsWith: String
+  beneficiary_endsWith: String
+  beneficiary_in: [String!]
+  requestedAmount_eq: String
+  requestedAmount_contains: String
+  requestedAmount_startsWith: String
+  requestedAmount_endsWith: String
+  requestedAmount_in: [String!]
+  boundedAmount_eq: String
+  boundedAmount_contains: String
+  boundedAmount_startsWith: String
+  boundedAmount_endsWith: String
+  boundedAmount_in: [String!]
+  status_eq: Status
+  status_in: [Status!]
+  AND: [KusamaProposalsWhereInput!]
+  OR: [KusamaProposalsWhereInput!]
+}
+
+input KusamaProposalsWhereUniqueInput {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type ProcessorState {
+  lastCompleteBlock: Float!
+  lastProcessedEvent: String!
+  indexerHead: Float!
+  chainHead: Float!
+}
+
+""" All transfers """
+type ProposalHistory implements BaseGraphQLObject {
+  id: ID!
+  createdAt: DateTime!
+  createdById: String!
+  updatedAt: DateTime
+  updatedById: String
+  deletedAt: DateTime
+  deletedById: String
+  version: Int!
+  value: BigInt!
+  block: Int!
+  tip: BigInt!
+  timestamp: BigInt!
+  insertedAt: DateTime!
+}
+
+type ProposalHistoryConnection {
+  totalCount: Int!
+  edges: [ProposalHistoryEdge!]!
+  pageInfo: PageInfo!
+}
+
+input ProposalHistoryCreateInput {
+  value: BigInt!
+  block: Float!
+  tip: BigInt!
+  timestamp: BigInt!
+  insertedAt: DateTime!
+}
+
+type ProposalHistoryEdge {
+  node: ProposalHistory!
+  cursor: String!
+}
+
+enum ProposalHistoryOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+  value_ASC
+  value_DESC
+  block_ASC
+  block_DESC
+  tip_ASC
+  tip_DESC
+  timestamp_ASC
+  timestamp_DESC
+  insertedAt_ASC
+  insertedAt_DESC
+}
+
+input ProposalHistoryUpdateInput {
+  value: BigInt
+  block: Float
+  tip: BigInt
+  timestamp: BigInt
+  insertedAt: DateTime
+}
+
+input ProposalHistoryWhereInput {
+  id_eq: ID
+  id_in: [ID!]
+  createdAt_eq: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdById_eq: ID
+  createdById_in: [ID!]
+  updatedAt_eq: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedById_eq: ID
+  updatedById_in: [ID!]
+  deletedAt_all: Boolean
+  deletedAt_eq: DateTime
+  deletedAt_lt: DateTime
+  deletedAt_lte: DateTime
+  deletedAt_gt: DateTime
+  deletedAt_gte: DateTime
+  deletedById_eq: ID
+  deletedById_in: [ID!]
+  value_eq: BigInt
+  value_gt: BigInt
+  value_gte: BigInt
+  value_lt: BigInt
+  value_lte: BigInt
+  value_in: [BigInt!]
+  block_eq: Int
+  block_gt: Int
+  block_gte: Int
+  block_lt: Int
+  block_lte: Int
+  block_in: [Int!]
+  tip_eq: BigInt
+  tip_gt: BigInt
+  tip_gte: BigInt
+  tip_lt: BigInt
+  tip_lte: BigInt
+  tip_in: [BigInt!]
+  timestamp_eq: BigInt
+  timestamp_gt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lt: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  insertedAt_eq: DateTime
+  insertedAt_lt: DateTime
+  insertedAt_lte: DateTime
+  insertedAt_gt: DateTime
+  insertedAt_gte: DateTime
+  AND: [ProposalHistoryWhereInput!]
+  OR: [ProposalHistoryWhereInput!]
+}
+
+input ProposalHistoryWhereUniqueInput {
+  id: ID!
+}
+
+type Query {
+  kusamaProposals(offset: Int, limit: Int = 50, where: KusamaProposalsWhereInput, orderBy: [KusamaProposalsOrderByInput!]): [KusamaProposals!]!
+  kusamaProposalsByUniqueInput(where: KusamaProposalsWhereUniqueInput!): KusamaProposals
+  kusamaProposalsConnection(first: Int, after: String, last: Int, before: String, where: KusamaProposalsWhereInput, orderBy: [KusamaProposalsOrderByInput!]): KusamaProposalsConnection!
+  proposalHistories(offset: Int, limit: Int = 50, where: ProposalHistoryWhereInput, orderBy: [ProposalHistoryOrderByInput!]): [ProposalHistory!]!
+  proposalHistoryByUniqueInput(where: ProposalHistoryWhereUniqueInput!): ProposalHistory
+  proposalHistoriesConnection(first: Int, after: String, last: Int, before: String, where: ProposalHistoryWhereInput, orderBy: [ProposalHistoryOrderByInput!]): ProposalHistoryConnection!
+}
+
+type StandardDeleteResponse {
+  id: ID!
+}
+
+enum Status {
+  Proposed
+  Awarded
+  Rejected
+}
+
+type Subscription {
+  stateSubscription: ProcessorState!
+}

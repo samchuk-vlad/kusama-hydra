@@ -1,0 +1,14 @@
+enum Status {
+  Proposed
+  Awarded
+  Rejected
+}
+
+type KusamaProposals @entity {
+  proposalIndex: Int
+  proposer: String
+  beneficiary: String
+  requestedAmount: String
+  boundedAmount: String
+  status: Status
+}
